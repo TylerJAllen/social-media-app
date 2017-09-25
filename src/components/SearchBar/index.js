@@ -14,7 +14,6 @@ class SearchBar extends React.Component {
         value={this.state.term}
         onChange={event => this.onInputChange(event.target.value)}
         placeholder="Search Radiant"/>
-        <p>Value of the input: {this.state.term}</p>
       </div>
     );
   }

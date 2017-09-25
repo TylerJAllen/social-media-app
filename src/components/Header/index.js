@@ -15,7 +15,8 @@ class Header extends React.Component {
         <img src={Logo} alt="logo" id="logo" />
         <SearchBar />
         <div className="nav-links">
-
+          <button>Sign Up</button>
+          <button>Log In</button>
         </div>
       </div>
     );
