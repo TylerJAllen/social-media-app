@@ -1,0 +1,5 @@
+.mainlist {
+  width: 100%;
+  border: 1px solid black;
+  height: calc(100vh - 59px);
+}

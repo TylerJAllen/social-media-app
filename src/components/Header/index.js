@@ -12,7 +12,8 @@ class Header extends React.Component {
     var logoUrl = '../../images/logo.png';
     return (
       <div className="nav-bar">
-        <img src={Logo} alt="logo" id="logo" />
+        {/*<img src={} alt="logo" id="logo" />*/}
+        <h1>Blitz</h1>
         <SearchBar />
         <div className="nav-links">
           <button>Sign Up</button>

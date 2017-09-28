@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
+import MainList from './components/MainList';
 
 class App extends Component {
   render() {
@@ -10,7 +11,7 @@ class App extends Component {
           <Header />
         </div>
         <div className="App-main">
-
+          <MainList />
         </div>
       </div>
     );
