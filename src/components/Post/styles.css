@@ -1,0 +1,33 @@
+.post {
+  border-top: 3px solid #000;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.post-image {
+  grid-row-start: 1;
+  grid-row-end: 4;
+  border: 1px solid black;
+  height: 150px;
+  background-color: lightgreen;
+  max-width: 300px;
+}
+
+.post-header {
+  border: 1px solid black;
+  height: 40px;
+  background-color: lightblue;
+}
+
+.post-content {
+  border: 1px solid black;
+  height: 50px;
+  background-color: pink;
+}
+
+.post-footer {
+  border: 1px solid black;
+  height: 40px;
+  background-color: yellow;
+}
