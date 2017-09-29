@@ -6,7 +6,6 @@ p {
   border-top: 3px solid #000;
   padding: 15px 10px;
   display: flex;
-  flex-direction: row;
 }
 
 /*.flex-row {
@@ -15,7 +14,9 @@ p {
 }*/
 
 .image-container {
-  flex-grow: 1;
+  /*flex-grow: 1;*/
+  width: 50px;
+  margin: 0 5px;
   height: inherit;
 }
 
@@ -29,22 +30,19 @@ p {
 
 .text-container {
   margin: 0 5px;
-  flex-grow: 7;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  width: calc(100% - 50px);
 }
 
 .post-header {
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   height: 20px;
-  background-color: lightblue;
+  /*min-width: 340px;*/
+  margin-bottom: 3px;
+  display: flex;
 }
 
-.post-content {
-  border: 1px solid black;
-  height: 50px;
-  background-color: pink;
+.post-text {
+  /*border: 1px solid black;*/
 }
 
 .post-footer {
@@ -55,5 +53,4 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: yellow;
 }
