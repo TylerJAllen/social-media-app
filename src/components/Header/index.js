@@ -14,7 +14,7 @@ class Header extends React.Component {
       <div className="nav-bar">
         {/*<img src={} alt="logo" id="logo" />*/}
         <h1>Blitz</h1>
-        <SearchBar />
+        {/*<SearchBar />*/}
         <div className="nav-links">
           <button>Sign Up</button>
           <button>Log In</button>
