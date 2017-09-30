@@ -18,7 +18,7 @@ class Header extends React.Component {
         <div className="nav-links">
           {/*<button>Sign Up</button>*/}
           {/*<button>Log In</button>*/}
-          <button onClick={() => this.props.addNewPost()}>+</button>
+          <button onClick={this.props.showFormModal}>+</button>
         </div>
       </div>
     );

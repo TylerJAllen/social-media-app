@@ -7,7 +7,9 @@ import NewPostControl from './components/NewPostControl';
 class App extends Component {
   constructor(){
     super();
-    this.state = { masterPostList: [
+    this.state = {
+      formModalIsShowing: false,
+      masterPostList: [
       {
         name: "frank Apple",
         username: "@FRANKtheTANK",
@@ -56,13 +58,12 @@ class App extends Component {
     ]};
   }
 
-  addPost = () => {
-    const newPost = {
-      name: "New Post",
-      username: "@newpost",
-      text: "this new post was added by clicking a button!!"
-    }
-    this.setState({ newPost });
+  showFormModal = () => {
+    this.setState({ formModalIsShowing: true });
+  }
+
+  hideFormModal = () => {
+    this.setState({ formModalIsShowing: false });
   }
 
   addNewPostToList = (newPost) => {
@@ -75,11 +76,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <Header addNewPost={this.addPost} />
+          <Header
+            showFormModal = {this.showFormModal}
+          />
         </div>
         <div className="App-main">
-          <NewPostControl onNewPostCreation = {this.addNewPostToList} />
-          <PostList postList = {this.state.masterPostList} />
+          <NewPostControl
+            formModalIsShowing = {this.state.formModalIsShowing}
+            onNewPostCreation = {this.addNewPostToList}
+            hideFormModal = {this.hideFormModal}
+          />
+          <PostList
+            postList = {this.state.masterPostList}
+          />
         </div>
       </div>
     );
