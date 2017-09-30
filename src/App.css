@@ -1,13 +1,21 @@
 .App {
-  text-align: center;
 }
 
 .App-header {
   background-color: #fff;
   padding: 5px;
-  color: white;
   height: 50px;
+  width: 100%;
   box-shadow: 0 1px 3px #555;
+  position: fixed;
+  top: 0;
+  /*z-index: 10px;*/
+}
+
+.App-main {
+  /*position: relative;*/
+  margin-top: 70px;
+  /*z-index: -10px;*/
 }
 
 .App-intro {
