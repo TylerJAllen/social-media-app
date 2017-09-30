@@ -78,12 +78,8 @@ class App extends Component {
           <Header addNewPost={this.addPost} />
         </div>
         <div className="App-main">
-          <NewPostControl
-            onNewPostCreation = {this.addNewPostToList}
-          />
-          <PostList
-            postList = {this.state.masterPostList}
-          />
+          <NewPostControl onNewPostCreation = {this.addNewPostToList} />
+          <PostList postList = {this.state.masterPostList} />
         </div>
       </div>
     );
