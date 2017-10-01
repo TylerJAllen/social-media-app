@@ -8,7 +8,7 @@ const NavigationLinks = () => {
     <ul className="nav-links">
       <li>
         <Link to='/'>
-          <div>home</div>
+          <div>Home</div>
         </Link>
       </li>
       <li>

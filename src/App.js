@@ -95,7 +95,10 @@ class App extends Component {
                 render = {props => <PostList {...props} masterPostList = {this.state.masterPostList} />
                 }
               />
-              <Route path='/user-profile' component={UserProfile} />
+              <Route path='/user-profile'
+                render = {props => <UserProfile {...props} masterPostList = {this.state.masterPostList} />
+                }
+              />
             </Switch>
           </div>
           <div className="App-footer">

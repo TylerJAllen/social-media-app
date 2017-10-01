@@ -1,0 +1,57 @@
+.user-profile-box {
+  border: 1px solid black;
+  background-color: lightgreen;
+}
+
+.hero-image {
+  width: 100%;
+  /*height:*/
+  border: 1px solid black;
+  background-color: lightpink;
+}
+
+.user-info {
+  border: 1px solid black;
+  background-color: lightblue;
+}
+
+.user-info-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-actions {
+  display: flex;
+}
+
+.user-actions > div {
+  margin-right: 5px;
+}
+
+.timeline-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.timeline-navlink {
+    float: left;
+}
+
+.timeline-navlink-route {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.timeline-navlink-button:hover:not(.active) {
+    background-color: #111;
+}
+
+.timeline-nav-link .active {
+    background-color: #4CAF50;
+}
