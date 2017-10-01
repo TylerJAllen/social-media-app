@@ -3,11 +3,16 @@
   background-color: lightgreen;
 }
 
-.hero-image {
+.hero-image-container {
   width: 100%;
-  /*height:*/
+  height:200px;
+  overflow: hidden;
   border: 1px solid black;
   background-color: lightpink;
+}
+
+.user-hero-image {
+  width: 100%;
 }
 
 .user-info {
@@ -18,14 +23,28 @@
 .user-info-header {
   display: flex;
   justify-content: space-between;
+  position: relative;
+}
+
+.empty-placeholder {
+  width: 50px;
+  height: 10px;
+  margin: 0 10px 10px;
 }
 
 .user-actions {
   display: flex;
 }
 
-.user-actions > div {
-  margin-right: 5px;
+.user-actions > button {
+  margin: 5px;
+  width: 70px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.user-message-button {
+
 }
 
 .timeline-nav {

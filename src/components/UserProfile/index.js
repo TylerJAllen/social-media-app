@@ -24,13 +24,20 @@ class UserProfile extends React.Component {
     return (
       <div className="user-profile-container">
         <div className="user-profile-box">
-          <div className="hero-image"></div>
+          <div className="hero-image-container">
+            <img className='user-hero-image' src='http://lorempixel.com/400/400/sports' alt='avatar'/>
+          </div>
           <div className="user-info">
             <div className="user-info-header">
-              <div className="user-avatar"></div>
+              <div className="empty-placeholder"></div>
+              <div className="user-avatar-container">
+                <div className="user-avatar">
+                  <img className='user-avatar-image' src='http://lorempixel.com/200/200/people' alt='avatar'/>
+                </div>
+              </div>
               <div className="user-actions">
-                <div className="message-user">message</div>
-                <div className="follow-user">follow</div>
+                <button className="user-message-button">message</button>
+                <button className="user-follow-button">follow</button>
               </div>
             </div>
             <div className="user-fullname">tyler allen</div>
