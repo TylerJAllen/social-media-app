@@ -6,6 +6,7 @@ import NavigationLinks from './components/NavigationLinks';
 import PostList from './components/PostList';
 import NewPostControl from './components/NewPostControl';
 import UserProfile from './components/UserProfile/index.js';
+import PrivateMessage from './components/PrivateMessage';
 
 class App extends Component {
   constructor(){
@@ -99,6 +100,8 @@ class App extends Component {
                 render = {props => <UserProfile {...props} masterPostList = {this.state.masterPostList} />
                 }
               />
+              <Route path='/messages'
+                component = {PrivateMessage} />
             </Switch>
           </div>
           <div className="App-footer">

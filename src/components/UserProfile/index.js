@@ -36,7 +36,9 @@ class UserProfile extends React.Component {
                 </div>
               </div>
               <div className="user-actions">
-                <button className="user-message-button">message</button>
+                <button className="user-message-button">
+                  <Link to='/messages'>message</Link>
+                </button>
                 <button className="user-follow-button">follow</button>
               </div>
             </div>
