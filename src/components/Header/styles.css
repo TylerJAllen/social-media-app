@@ -1,9 +1,13 @@
 .nav-bar {
-  height: inherit;
+  /*height: inherit;*/
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.nav-bar h1 {
+  margin: 0;
 }
 
 #logo {
