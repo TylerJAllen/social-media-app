@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
+import NavigationLinks from './components/NavigationLinks';
 import PostList from './components/PostList';
 import NewPostControl from './components/NewPostControl';
 
@@ -87,8 +88,11 @@ class App extends Component {
             hideFormModal = {this.hideFormModal}
           />
           <PostList
-            postList = {this.state.masterPostList}
+            masterPostList = {this.state.masterPostList}
           />
+        </div>
+        <div className="App-footer">
+          <NavigationLinks />
         </div>
       </div>
     );

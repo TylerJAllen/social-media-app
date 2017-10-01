@@ -6,7 +6,7 @@
   padding: 5px;
   height: 50px;
   width: 100%;
-  box-shadow: 0 1px 3px #555;
+  box-shadow: 0 1px 10px #555;
   position: fixed;
   top: 0;
   /*z-index: 10px;*/
@@ -14,16 +14,24 @@
 
 .App-main {
   /*position: relative;*/
-  margin-top: 70px;
+  margin-top: 50px;
   /*z-index: -10px;*/
 }
 
-.App-intro {
-  font-size: large;
-
+.App-footer {
+  background-color: #fff;
+  padding: 5px;
+  height: 50px;
+  width: 100%;
+  /*box-shadow: 0 -1px 8px #555;*/
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #000;
+  /*z-index: 10px;*/
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@media screen and (min-width: 1024px) {
+  .App-footer {
+    display: none;
+  }
 }
