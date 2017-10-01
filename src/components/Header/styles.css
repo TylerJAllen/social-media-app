@@ -10,11 +10,12 @@
   margin: 0;
 }
 
-#logo {
-  height: 35px;
+.show-nav-links {
+  display: none;
 }
 
-button {
+.nav-bar button {
+
   margin: 0px;
   border-radius: 20px;
   border: 2px solid #000;
@@ -24,4 +25,10 @@ button {
   background-color: #bbb;
   font-size: 14px;
   font-weight: bold;
+}
+
+@media screen and (min-width: 1024px) {
+  .show-nav-links {
+    display: block;
+  }
 }
