@@ -5,18 +5,18 @@ class User {
     this.fullname = fullname;
     this.username = username;
     this.password = password;
-    this.location;
-    this.description;
-    this.team;
-    this.avatar;
-    this.hero;
+    this.location = '';
+    this.description = '';
+    this.team = '';
+    this.avatar = '';
+    this.hero = '';
     this.posts = [];
     this.likes = [];
     this.followers = [];
     this.following = [];
     this.messages = [];
 
-    this.accountCreated = new Moment();
+    this.accountCreated = new Moment()._d;
   }
 }
 

@@ -1,16 +1,18 @@
 import React from 'react';
 import './styles.css';
 import User from '../../models/User.js';
+import firebase from '../../firebase.js';
 
 class SignUpForm extends React.Component {
-  constructor(props){
-    super(props);
-  }
+
 
   handleSignUpFormSubmission = (event) => {
     event.preventDefault();
     const { _fullName, _username, _password } = this.refs;
+    const usersRef = firebase.database().ref('users');
     var newUser = new User(_fullName.value, _username.value, _password.value);
+
+    usersRef.push(newUser);
 
     console.log(newUser);
   }

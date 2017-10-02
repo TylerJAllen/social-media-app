@@ -1,12 +1,10 @@
 import React from 'react';
 import NewPostForm from '../../components/NewPostForm';
 import PropTypes from 'prop-types';
-import { Button, Modal }  from 'react-bootstrap';
+import { Modal }  from 'react-bootstrap';
 
 class NewPostControl extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   render() {
     return (

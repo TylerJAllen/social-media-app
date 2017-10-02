@@ -1,12 +1,10 @@
 import React from 'react';
 import './styles.css';
-import { Route, BrowserRouter, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import PostList from '../PostList';
 
 class UserProfile extends React.Component {
-  constructor(props){
-    super(props);
-  }
+  
 
   getShortList = (input) => {
     const masterList = this.props.masterPostList;

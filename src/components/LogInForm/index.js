@@ -2,9 +2,7 @@ import React from 'react';
 import './styles.css';
 
 class LogInForm extends React.Component {
-  constructor(props){
-    super(props);
-  }
+  
 
   handleLogInFormSubmission = (event) => {
     event.preventDefault();
