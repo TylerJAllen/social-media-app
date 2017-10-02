@@ -1,7 +1,3 @@
-p {
-  margin: 0;
-}
-
 .post {
   border: 2px solid #000;
   padding: 15px 10px;
@@ -9,50 +5,92 @@ p {
   background-color: #eee;
 }
 
-/*.flex-row {
-  display: flex;
-  flex-direction: row;
-}*/
-
-.image-container {
-  /*flex-grow: 1;*/
-  width: 50px;
-  margin: 0 5px;
-  height: inherit;
+.content {
+  margin-left: 60px;
 }
 
-.post-image {
-  border: 1px solid black;
-  height: inherit;
-  background-color: lightgreen;
-  min-width: 32px;
-  max-width: 50px;
+.post-header .account-group {
+  color: #657786;
 }
 
-.text-container {
-  margin: 0 5px;
-  width: calc(100% - 50px);
+.fullname {
+  font-size: 14px;
+  font-weight: bold;
+  color: #14171a;
 }
 
-.post-header {
-  /*border: 1px solid black;*/
-  height: 20px;
-  /*min-width: 340px;*/
-  margin-bottom: 3px;
-  display: flex;
+.username {
+  font-size: 14px;
+  color: #657786;
+}
+
+.time:before {
+  content: "\00b7";
+}
+
+.post-header .avatar {
+  float: left;
+  margin-top: 3px;
+  margin-left: -58px;
 }
 
 .post-text {
+  font-size: 14px;
+  line-height: 20px;
   word-wrap: break-word;
-  /*border: 1px solid black;*/
+  white-space: pre-wrap;
 }
 
 .post-footer {
-  border: 1px solid black;
+  display: table;
+  width: 100%;
+  font-size: 12px;
+  padding-top: 1px;
+  font-size: 0;
+  height: 18px;
+  line-height: 1;
+  margin-bottom: 2px;
   margin-top: 10px;
-  height: 20px;
-  /*min-width: 340px;*/
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+}
+
+.post-action {
+  display: inline-block;
+  min-width: 65px;
+}
+
+.post-action-message {
+  min-width: 26px;
+}
+
+.post-action-button {
+  color: #657786;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+.icon-container {
+  display: inline-block;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.icon {
+  background: transparent;
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.post-action-count {
+  color: #657786;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  margin-left: 6px;
+  vertical-align: text-bottom;
 }

@@ -1,21 +1,22 @@
 import React from 'react';
 import './styles.css';
-import Logo from '../../images/logo.png';
-import SearchBar from '../SearchBar';
 import NavigationLinks from '../NavigationLinks';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
   render() {
-    var logoUrl = '../../images/logo.png';
     return (
       <div className="nav-bar">
-        {/*<img src={} alt="logo" id="logo" />*/}
-        <h1>Blitz</h1>
-        {/*<SearchBar />*/}
+        <div className="user-profile">
+
+        </div>
+        <div className="show-nav-links">
+          <NavigationLinks />
+        </div>
+        <Link to='/'>
+          <h1>Blitz</h1>
+        </Link>
         <button onClick={this.props.showFormModal}>+</button>
         {/*<div className="nav-links">
           <button>Sign Up</button>

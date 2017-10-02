@@ -4,3 +4,46 @@ body {
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+p {
+  margin: 0;
+}
+
+a, a:focus, a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.user-avatar-container {
+  bottom: -25px;
+  left: 10px;
+  position: absolute;
+  transition: bottom .3s;
+  z-index: 3;
+}
+
+
+
+.user-avatar {
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  height: 100px;
+  position: relative;
+  width: 100px;
+}
+
+.user-avatar-image {
+  border-radius: 50%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
