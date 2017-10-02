@@ -9,6 +9,8 @@ import UserProfile from './components/UserProfile/index.js';
 import PrivateMessage from './components/PrivateMessage';
 import SignUpLogIn from './components/SignUpLogIn';
 
+import firebase from './firebase.js';
+
 class App extends React.Component {
   constructor(){
     super();
@@ -61,6 +63,13 @@ class App extends React.Component {
         text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
       }
     ]};
+  }
+
+  componentDidMount() {
+    const usersRef = firebase.database().ref('users');
+    usersRef.on('value', (snapshot) => {
+      console.log(snapshot.val());
+    });
   }
 
   showFormModal = () => {
