@@ -14,6 +14,28 @@ a, a:focus, a:hover {
   text-decoration: none;
 }
 
+input {
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 4px;
+  padding: 2px 10px;
+  height: 30px;
+  width: 90%;
+}
+
+textarea {
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 4px;
+  padding: 2px 10px;
+  min-height: 80px;
+  width: 90%;
+}
+
+.input-wrapper {
+  text-align: center;
+}
+
 .avatar {
   width: 48px;
   height: 48px;

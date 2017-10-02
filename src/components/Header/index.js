@@ -18,10 +18,6 @@ class Header extends React.Component {
           <h1>Blitz</h1>
         </Link>
         <button onClick={this.props.showFormModal}>+</button>
-        {/*<div className="nav-links">
-          <button>Sign Up</button>
-          <button>Log In</button>
-        </div>*/}
       </div>
     );
   }
