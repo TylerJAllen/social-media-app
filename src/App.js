@@ -16,6 +16,7 @@ class App extends React.Component {
     super();
     this.state = {
       formModalIsShowing: false,
+      user: null,
       masterPostList: [
       {
         name: "frank Apple",
@@ -66,10 +67,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const usersRef = firebase.database().ref('users');
-    usersRef.on('value', (snapshot) => {
-      console.log(snapshot.val());
-    });
   }
 
   showFormModal = () => {
@@ -86,26 +83,67 @@ class App extends React.Component {
    this.setState({masterPostList: newMasterPostList});
   }
 
+  logOut = () => {
+    this.setState({user : null});
+  }
+
+  findUser(username){
+    console.log("test");
+    for(var i = 0; i < this.allUsers.length; i++){
+      if(this.allUsers[i].login === username){
+        console.log(this.allUsers[i]);
+        return this.allUsers[i].$key;
+      }
+    }
+  }
+
+  logInAuthentication = (username, password) => {
+    const usersRef = firebase.database().ref('users');
+    let userLoggedIn;
+
+    usersRef.on('value', (snapshot) => {
+      snapshot.forEach(userSnapshot => {
+        let usernameSnapshot = userSnapshot.val().username;
+        let passwordSnapshot = userSnapshot.val().password;
+        if(username === usernameSnapshot && password === passwordSnapshot){
+          userLoggedIn = userSnapshot.val();
+        }
+      })
+    });
+
+    if(userLoggedIn){
+      this.setState({ user : userLoggedIn });
+      console.log("YOU ARE LOGGED IN");
+    } else{
+      alert("Incorrect username and/or password. Please try again.")
+      console.log("YOU ARE NOT LOGGED IN");
+    }
+  }
+
   render() {
+    console.log(this.state.user);
     return (
       <BrowserRouter>
         <div className="App">
           <div className="App-header">
-            <Header showFormModal = {this.showFormModal} />
+            <Header showFormModal={this.showFormModal} />
           </div>
           <div className="App-main">
             <NewPostControl
-              formModalIsShowing = {this.state.formModalIsShowing}
-              onNewPostCreation = {this.addNewPostToList}
-              hideFormModal = {this.hideFormModal} />
-            <Switch>
-              <Route exact path = '/' component = {SignUpLogIn} />
-              <Route exact path = '/postlist'
-                render = {props => <PostList {...props} masterPostList = {this.state.masterPostList} /> } />
-              <Route path='/user-profile'
-                render = {props => <UserProfile {...props} masterPostList = {this.state.masterPostList} /> } />
-              <Route path='/messages' component = {PrivateMessage} />
-            </Switch>
+              formModalIsShowing={this.state.formModalIsShowing}
+              onNewPostCreation={this.addNewPostToList}
+              hideFormModal={this.hideFormModal} />
+              {this.state.user ?
+                <Switch>
+                  <Route exact path='/'
+                  render={props => <PostList {...props} masterPostList={this.state.masterPostList} /> } />
+                  <Route path='/user-profile'
+                    render={props => <UserProfile {...props} masterPostList={this.state.masterPostList} /> } />
+                  <Route path='/messages' component={PrivateMessage} />
+                </Switch>
+                :
+                <Route path='/' render={props => <SignUpLogIn {...props} logIn={this.logInAuthentication} logOut={this.logOut} /> } />
+              }
           </div>
           <div className="App-footer">
             <NavigationLinks />

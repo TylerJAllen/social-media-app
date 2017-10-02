@@ -6,12 +6,18 @@ class Post {
     this.id_str ="";
     this.text = text;
     this.user = {
-      this.id: ;
-      this.name: "";
-      this.username: "";
-      this.location: "";
-      this.description: "";
+      id: null,
+      name: "",
+      username: "",
+      location: "",
+      description: "",
     }
+    this.likes = 0;
+    this.dislikes = 0;
+    this.repost_count = 0;
+    this.liked = false;
+    this.disliked = false;
+    this.reposted = false;
   }
 }
 

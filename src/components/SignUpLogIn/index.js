@@ -4,8 +4,8 @@ import SignUpForm from '../SignUpForm';
 import LogInForm from '../LogInForm';
 
 class SignUpLogIn extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = { signUpIsClicked: false };
   }
 
@@ -18,13 +18,13 @@ class SignUpLogIn extends React.Component {
   }
 
   displayForm = (input) => {
-    if(input === true){
+    if(input){
       return (
         <SignUpForm />
       );
-    } else if(input === false){
+    } else{
       return (
-        <LogInForm />
+        <LogInForm logIn={this.props.logIn} />
       );
     }
   }

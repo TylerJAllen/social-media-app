@@ -2,12 +2,13 @@ import React from 'react';
 import './styles.css';
 
 class LogInForm extends React.Component {
-  
+
 
   handleLogInFormSubmission = (event) => {
     event.preventDefault();
     const { _username, _password } = this.refs;
-    console.log(_username.value, _password.value);
+    this.props.logIn(_username.value, _password.value);
+    // console.log(_username.value, _password.value);
   }
 
   render(){
@@ -27,7 +28,7 @@ class LogInForm extends React.Component {
             id="password"
             placeholder="Password" />
         </div>
-        <button type="submit">Sign up</button>
+        <button type="submit">Log in</button>
       </form>
     );
   }
