@@ -16,24 +16,24 @@ class NewPostForm extends React.Component{
     return (
       <div>
         <form onSubmit={this.handleNewPostFormSubmission}>
-          <div><input
+          <div className="input-wrapper"><input
             ref="_name"
             type="text"
             id="name"
             placeholder="Name" /></div>
-          <div><input
+          <div className="input-wrapper"><input
             ref="_username"
             type="text"
             id="username"
             placeholder="Username" /></div>
-          <div><textarea
+          <div className="input-wrapper"><textarea
             ref="_text"
             type="text"
             id="text"
             placeholder="What's happening?" /></div>
           <button type="submit">Submit</button>
-          </form>
-        </div>
+        </form>
+      </div>
     );
   }
 }

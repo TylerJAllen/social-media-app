@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import {Route, BrowserRouter, Switch} from 'react-router-dom';
 import Header from './components/Header';
@@ -7,8 +7,9 @@ import PostList from './components/PostList';
 import NewPostControl from './components/NewPostControl';
 import UserProfile from './components/UserProfile/index.js';
 import PrivateMessage from './components/PrivateMessage';
+import SignUpLogIn from './components/SignUpLogIn';
 
-class App extends Component {
+class App extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -81,27 +82,20 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <div className="App-header">
-            <Header
-              showFormModal = {this.showFormModal}
-            />
+            <Header showFormModal = {this.showFormModal} />
           </div>
           <div className="App-main">
             <NewPostControl
               formModalIsShowing = {this.state.formModalIsShowing}
               onNewPostCreation = {this.addNewPostToList}
-              hideFormModal = {this.hideFormModal}
-            />
+              hideFormModal = {this.hideFormModal} />
             <Switch>
-              <Route exact path = '/'
-                render = {props => <PostList {...props} masterPostList = {this.state.masterPostList} />
-                }
-              />
+              <Route exact path = '/' component = {SignUpLogIn} />
+              <Route exact path = '/postlist'
+                render = {props => <PostList {...props} masterPostList = {this.state.masterPostList} /> } />
               <Route path='/user-profile'
-                render = {props => <UserProfile {...props} masterPostList = {this.state.masterPostList} />
-                }
-              />
-              <Route path='/messages'
-                component = {PrivateMessage} />
+                render = {props => <UserProfile {...props} masterPostList = {this.state.masterPostList} /> } />
+              <Route path='/messages' component = {PrivateMessage} />
             </Switch>
           </div>
           <div className="App-footer">
