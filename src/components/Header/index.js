@@ -5,6 +5,17 @@ import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
+  showUserButtons = () => {
+    if(this.props.userIsSignedIn){
+      return (
+        <div className="header-buttons">
+          <button onClick={this.props.logOut}>Log out</button>
+          <button onClick={this.props.showFormModal}>+</button>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div className="nav-bar">
@@ -17,7 +28,7 @@ class Header extends React.Component {
         <Link to='/'>
           <h1>Blitz</h1>
         </Link>
-        <button onClick={this.props.showFormModal}>+</button>
+        {this.showUserButtons()}
       </div>
     );
   }

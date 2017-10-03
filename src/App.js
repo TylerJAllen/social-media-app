@@ -87,16 +87,6 @@ class App extends React.Component {
     this.setState({user : null});
   }
 
-  findUser(username){
-    console.log("test");
-    for(var i = 0; i < this.allUsers.length; i++){
-      if(this.allUsers[i].login === username){
-        console.log(this.allUsers[i]);
-        return this.allUsers[i].$key;
-      }
-    }
-  }
-
   logInAuthentication = (username, password) => {
     const usersRef = firebase.database().ref('users');
     let userLoggedIn;
@@ -126,7 +116,10 @@ class App extends React.Component {
       <BrowserRouter>
         <div className="App">
           <div className="App-header">
-            <Header showFormModal={this.showFormModal} />
+            <Header
+              showFormModal={this.showFormModal}
+              logOut={this.logOut}
+              userIsSignedIn={this.state.user} />
           </div>
           <div className="App-main">
             <NewPostControl
@@ -142,7 +135,7 @@ class App extends React.Component {
                   <Route path='/messages' component={PrivateMessage} />
                 </Switch>
                 :
-                <Route path='/' render={props => <SignUpLogIn {...props} logIn={this.logInAuthentication} logOut={this.logOut} /> } />
+                <Route path='/' render={props => <SignUpLogIn {...props} logIn={this.logInAuthentication} /> } />
               }
           </div>
           <div className="App-footer">
