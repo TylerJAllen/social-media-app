@@ -5,15 +5,16 @@ import PropTypes from 'prop-types';
 
 function PostList(props){
   console.log(props.masterPostList);
+
   return (
     <ol className="post-list">
       {props.masterPostList.map((post, index) =>
-        <Post name={post.name}
+        <Post fullname={post.fullname}
           username={post.username}
           text={post.text}
           key={index}/>
       )}
-      </ol>
+    </ol>
   );
 }
 

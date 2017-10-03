@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Header extends React.Component {
 
   showUserButtons = () => {
-    if(this.props.userIsSignedIn){
+    if(this.props.signedInUser){
       return (
         <div className="header-buttons">
           <button onClick={this.props.logOut}>Log out</button>
@@ -23,7 +23,7 @@ class Header extends React.Component {
 
         </div>
         <div className="show-nav-links">
-          <NavigationLinks />
+          <NavigationLinks signedInUser={this.props.signedInUser} />
         </div>
         <Link to='/'>
           <h1>Blitz</h1>

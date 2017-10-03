@@ -1,31 +1,44 @@
 import React from 'react';
 import Post from '../../models/Post.js';
 import PropTypes from 'prop-types';
+import firebase from '../../firebase.js';
 
 class NewPostForm extends React.Component{
 
   handleNewPostFormSubmission = (event) => {
     event.preventDefault();
-    const { _name, _username, _text } = this.refs;
-    var newPost = new Post(_name.value, _username.value, _text.value);
-    this.props.onNewPostCreation(newPost);
+    const { _text } = this.refs;
+    const { signedInUser } = this.props;
+    var newPost = new Post(
+                        _text.value,
+                        signedInUser.fullname,
+                        signedInUser.username,
+                        signedInUser.location,
+                        signedInUser.description
+                      );
+
+    console.log("NewPost model ", newPost);
+    console.log(newPost.user.fullname, newPost.user.username, newPost.user.location, newPost.user.description);
+    const usersRef = firebase.database().ref('users');
+
+    usersRef.on('value', (snapshot) => {
+      snapshot.forEach(userSnapshot => {
+        let postsList = userSnapshot.val().posts;
+        let username = userSnapshot.val().username;
+        //not working, explore firebase more
+        if(username === signedInUser){
+          userSnapshot.val().posts.unshift(newPost);
+        }
+      })
+    });
+
+    // this.props.onNewPostCreation(newPost);
     this.props.hideFormAfterSubmission();
-    console.log("new post: ", newPost);
   }
   render(){
     return (
       <div>
         <form onSubmit={this.handleNewPostFormSubmission}>
-          <div className="input-wrapper"><input
-            ref="_name"
-            type="text"
-            id="name"
-            placeholder="Name" /></div>
-          <div className="input-wrapper"><input
-            ref="_username"
-            type="text"
-            id="username"
-            placeholder="Username" /></div>
           <div className="input-wrapper"><textarea
             ref="_text"
             type="text"

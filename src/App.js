@@ -19,47 +19,47 @@ class App extends React.Component {
       user: null,
       masterPostList: [
       {
-        name: "frank Apple",
+        fullname: "frank Apple",
         username: "FRANKtheTANK",
         text: "That catch was UNREAL!!!"
       },
       {
-        name: "Susie Reign",
+        fullname: "Susie Reign",
         username: "feeltheReign",
         text: "Adams just keeps playing better and better. Would be shocked if he isn't voted Defensive Rookie of the Year. SHOCKED I TELL YOU!"
       },
       {
-        name: "Fake Name",
+        fullname: "Fake Name",
         username: "fakeeee",
         text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
       },
       {
-        name: "frank Apple",
+        fullname: "frank Apple",
         username: "FRANKtheTANK",
         text: "That catch was UNREAL!!!"
       },
       {
-        name: "Susie Reign",
+        fullname: "Susie Reign",
         username: "feeltheReign",
         text: "Adams just keeps playing better and better. Would be shocked if he isn't voted Defensive Rookie of the Year. SHOCKED I TELL YOU!"
       },
       {
-        name: "Fake Name",
+        fullname: "Fake Name",
         username: "fakeeee",
         text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
       },
       {
-        name: "frank Apple",
+        fullname: "frank Apple",
         username: "FRANKtheTANK",
         text: "That catch was UNREAL!!!"
       },
       {
-        name: "Susie Reign",
+        fullname: "Susie Reign",
         username: "feeltheReign",
         text: "Adams just keeps playing better and better. Would be shocked if he isn't voted Defensive Rookie of the Year. SHOCKED I TELL YOU!"
       },
       {
-        name: "Fake Name",
+        fullname: "Fake Name",
         username: "fakeeee",
         text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
       }
@@ -119,13 +119,14 @@ class App extends React.Component {
             <Header
               showFormModal={this.showFormModal}
               logOut={this.logOut}
-              userIsSignedIn={this.state.user} />
+              signedInUser={this.state.user} />
           </div>
           <div className="App-main">
             <NewPostControl
               formModalIsShowing={this.state.formModalIsShowing}
               onNewPostCreation={this.addNewPostToList}
-              hideFormModal={this.hideFormModal} />
+              hideFormModal={this.hideFormModal}
+              signedInUser={this.state.user} />
               {this.state.user ?
                 <Switch>
                   <Route exact path='/'

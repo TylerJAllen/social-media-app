@@ -6,7 +6,7 @@ import firebase from '../../firebase.js';
 class SignUpForm extends React.Component {
 
 
-  handleSignUpFormSubmission = (event) => {
+  handleNewUserFormSubmission = (event) => {
     event.preventDefault();
     const { _fullName, _username, _password } = this.refs;
     const usersRef = firebase.database().ref('users');
@@ -19,7 +19,7 @@ class SignUpForm extends React.Component {
 
   render(){
     return (
-      <form onSubmit={this.handleSignUpFormSubmission}>
+      <form onSubmit={this.handleNewUserFormSubmission}>
         <div className="input-wrapper">
           <input
             ref="_fullName"
