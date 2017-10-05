@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import {Route, BrowserRouter, Switch } from "react-router-dom";
-import { db, auth, storageKey, isAuthenticated } from "./firebase.js";
+import { auth, storageKey } from "./firebase.js";
 import { MatchWhenAuthorized } from "./models/routes.js";
 
 import Header from "./components/Header";
@@ -9,7 +9,7 @@ import NavigationLinks from "./components/NavigationLinks";
 import PostList from "./components/PostList";
 import NewPostControl from "./components/NewPostControl";
 import LogInPage from "./components/LogInPage";
-
+import SignUpPage from "./components/SignUpPage";
 
 
 class App extends React.Component {
@@ -66,9 +66,7 @@ class App extends React.Component {
           <div className="App-main">
             <NewPostControl
             formModalIsShowing={this.state.formModalIsShowing}
-            onNewPostCreation={this.addNewPostToList}
-            hideFormModal={this.hideFormModal}
-            signedInUser={this.state.user} />
+            hideFormModal={this.hideFormModal} />
             <Switch>
 
               {/*<Route exact path="/" render={() => (
@@ -82,6 +80,7 @@ class App extends React.Component {
               <MatchWhenAuthorized exact path="/" component={PostList} />
 
               <Route exact path='/login' component={LogInPage} />
+              <Route exact path='/signup' component={SignUpPage} />
 
 
 

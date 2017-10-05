@@ -1,8 +1,8 @@
 import React from 'react';
 import Post from '../../models/Post.js';
 import PropTypes from 'prop-types';
-import { db, auth, storageKey, isAuthenticated } from '../../firebase.js';
-// import { pushNewPostToDB, setKeyAsPostId } from '../../models/firebaseActions.js';
+import { auth } from '../../firebase.js';
+import { getUserId, addNewPostToDB } from '../../models/firebaseActions.js';
 
 
 class NewPostForm extends React.Component{
@@ -10,24 +10,18 @@ class NewPostForm extends React.Component{
   handleNewPostFormSubmission = (event) => {
     event.preventDefault();
     const { _text } = this.refs;
-    const { signedInUser } = this.props;
+
+    //static user inputs until get currentUser info updated
     var newPost = new Post(
-                        _text.value,
-                        signedInUser.fullname,
-                        signedInUser.username,
-                        signedInUser.location,
-                        signedInUser.description
-                      );
+      _text.value,
+      auth.currentUser.uid,
+      "tyler Allen",
+      "TyHamm",
+      "Portland, OR",
+      "Junior Web Developer interning at AKQA!"
+    );
 
-    let newPostKey =db.ref().child('posts').push().key;
-
-    let updates = {};
-    updates[`/posts/${newPostKey}`] = newPost;
-    updates[`/users/${signedInUser.id}/userPosts/${newPostKey}`] = newPost;
-
-    db.ref().update(updates);
-
-
+    addNewPostToDB(newPost);
     this.props.hideFormAfterSubmission();
   }
 
@@ -48,7 +42,6 @@ class NewPostForm extends React.Component{
 }
 
 NewPostForm.propTypes = {
-  onNewPostCreation: PropTypes.func,
   hideFormAfterSubmission: PropTypes.func
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { auth } from '../../firebase.js';
-import {Route, BrowserRouter, Switch, Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 class LogInPage extends React.Component {
 
@@ -35,32 +35,6 @@ class LogInPage extends React.Component {
     }
   }
 
-  handleSignUp = () => {
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-    if (email.length < 4) {
-      alert('Please enter an email address.');
-      return;
-    }
-    if (password.length < 4) {
-      alert('Please enter a password.');
-      return;
-    }
-
-    auth.createUserWithEmailAndPassword(email, password).catch( error => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-
-      if (errorCode === 'auth/weak-password') {
-        alert('The password is too weak.');
-      } else {
-        alert(errorMessage);
-      }
-
-      console.log(error);
-    });
-  }
-
   handlePasswordReset = () => {
     var email = document.getElementById('email').value;
     auth.sendPasswordResetEmail(email).then( () => {
@@ -84,7 +58,6 @@ class LogInPage extends React.Component {
 
   addClickListeners = () => {
     document.getElementById('blitz-sign-in').addEventListener('click', this.handleSignIn, false);
-    document.getElementById('blitz-sign-up').addEventListener('click', this.handleSignUp, false);
     document.getElementById('blitz-password-reset').addEventListener('click', this.handlePasswordReset, false);
   }
 
@@ -95,10 +68,10 @@ class LogInPage extends React.Component {
           <Redirect to="/" />
         )}
         <div>
-          <h2>Blitz Email &amp; Password Authentication</h2>
+          <h2>Welcome to Blitz</h2>
         </div>
         <div>
-          <p>Enter an email and password below and either sign in to an existing account or sign up</p>
+          <p>Enter an email and password below to sign in</p>
           <input
             ref="_email"
             type="text"
@@ -111,11 +84,11 @@ class LogInPage extends React.Component {
             type="password"
             id="password"
             name="password"
-            placeholder="Password"/>
+            placeholder="Password" />
           <br/><br/>
           <button id="blitz-sign-in" name="signin">Sign In</button>
           &nbsp;&nbsp;&nbsp;
-          <button id="blitz-sign-up" name="signup">Sign Up</button>
+          <Link to="/signup"><button id="blitz-sign-up" name="signup">Sign Up</button></Link>
           &nbsp;&nbsp;&nbsp;
           <button id="blitz-password-reset" name="verify-email">Send Password Reset Email</button>
         </div>

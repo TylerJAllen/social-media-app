@@ -2,27 +2,25 @@ import firebase from '../firebase.js';
 import { db, auth, storageKey, isAuthenticated } from '../firebase.js';
 
 
-export const setKeyAsUserId = (key) => {
-  db.ref(`users/${key}`).update({
-    id: key
-  });
+export const addNewPostToDB = (post) => {
+  let newPostKey =db.ref().child('posts').push().key;
+  let updates = {};
+
+  post.id = newPostKey;
+
+  updates[`/posts/${newPostKey}`] = post;
+  updates[`/users/${auth.currentUser.uid}/userPosts/${newPostKey}`] = post;
+
+  db.ref().update(updates);
 }
 
-export const pushNewPostToDB = (key, post) => {
-  return db.ref(`users/${key}/userPosts`).push(post);
-}
 
-export const setKeyAsPostId = (userKey, postKey) => {
-  db.ref(`users/${userKey}/userPosts/${postKey}`).update({
-    id: postKey
-  });
-}
+export const addNewUserToDB = (user) => {
+  let newUserId = auth.currentUser.uid;
+  user.userId = newUserId;
+  let updates = {};
 
-//need to get this working
-export const getUserByKey = (userKey) => {
-  db.ref('users').equalTo(`${userKey}`).once('value').on('value', (snapshot) => {
-    snapshot.forEach(userSnapshot => {
-      console.log(userSnapshot.val());
-    })
-  })
+  updates[`/users/${newUserId}/user`] = user;
+
+  db.ref().update(updates);
 }

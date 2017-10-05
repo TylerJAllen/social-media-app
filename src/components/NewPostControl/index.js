@@ -16,10 +16,7 @@ class NewPostControl extends React.Component {
             <Modal.Title>Add Post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <NewPostForm
-              onNewPostCreation = {this.props.onNewPostCreation}
-              hideFormAfterSubmission = {this.props.hideFormModal}
-              signedInUser={this.props.signedInUser} />
+            <NewPostForm hideFormAfterSubmission={this.props.hideFormModal} />
           </Modal.Body>
         </Modal>
       </div>
@@ -28,7 +25,7 @@ class NewPostControl extends React.Component {
 }
 
 NewPostControl.propTypes = {
-  onNewPostCreation: PropTypes.func
+  hideFormModal: PropTypes.func
 };
 
 export default NewPostControl;

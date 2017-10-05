@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import NavigationLinks from '../NavigationLinks';
 import { Link } from 'react-router-dom';
-import { auth } from "../../firebase.js";
+import { auth, isAuthenticated } from "../../firebase.js";
 
 class Header extends React.Component {
   constructor(){
@@ -18,6 +18,8 @@ class Header extends React.Component {
       if (user) {
         this.setState({userId: user.uid, user});
         console.log(user.uid);
+      } else {
+        this.setState({userId: null, user: null});
       }
     });
   }
@@ -27,7 +29,7 @@ class Header extends React.Component {
   }
 
   showUserButtons = () => {
-    if(this.state.userId){
+    if(isAuthenticated()){
       return (
         <div className="headerButtons">
           <button onClick={()=> auth.signOut()}>Log out</button>
@@ -37,9 +39,21 @@ class Header extends React.Component {
     }
   }
 
+  showUserAvatar = () => {
+    if(isAuthenticated()){
+      return (
+        <div className="userAvatar">
+        
+        </div>
+
+      );
+    }
+  }
+
   render() {
     return (
       <div className="nav-bar">
+        {this.showUserAvatar()}
         <div className="show-nav-links">
           <NavigationLinks />
         </div>
