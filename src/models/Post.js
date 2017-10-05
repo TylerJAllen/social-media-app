@@ -4,6 +4,7 @@ class Post {
   constructor(text, fullname, username, location, description) {
     this.created_at = new Moment()._d;
     this.text = text;
+    this.id = 0;
     this.user = {
       fullname: fullname,
       username: username,

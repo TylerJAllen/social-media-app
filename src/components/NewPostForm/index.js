@@ -1,7 +1,9 @@
 import React from 'react';
 import Post from '../../models/Post.js';
 import PropTypes from 'prop-types';
-import firebase from '../../firebase.js';
+import { db, auth, storageKey, isAuthenticated } from '../../firebase.js';
+// import { pushNewPostToDB, setKeyAsPostId } from '../../models/firebaseActions.js';
+
 
 class NewPostForm extends React.Component{
 
@@ -17,24 +19,18 @@ class NewPostForm extends React.Component{
                         signedInUser.description
                       );
 
-    console.log("NewPost model ", newPost);
-    console.log(newPost.user.fullname, newPost.user.username, newPost.user.location, newPost.user.description);
-    const usersRef = firebase.database().ref('users');
+    let newPostKey =db.ref().child('posts').push().key;
 
-    usersRef.on('value', (snapshot) => {
-      snapshot.forEach(userSnapshot => {
-        let postsList = userSnapshot.val().posts;
-        let username = userSnapshot.val().username;
-        //not working, explore firebase more
-        if(username === signedInUser){
-          userSnapshot.val().posts.unshift(newPost);
-        }
-      })
-    });
+    let updates = {};
+    updates[`/posts/${newPostKey}`] = newPost;
+    updates[`/users/${signedInUser.id}/userPosts/${newPostKey}`] = newPost;
 
-    // this.props.onNewPostCreation(newPost);
+    db.ref().update(updates);
+
+
     this.props.hideFormAfterSubmission();
   }
+
   render(){
     return (
       <div>
