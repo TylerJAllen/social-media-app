@@ -14,6 +14,19 @@ export const addNewPostToDB = (post) => {
   db.ref().update(updates);
 }
 
+export const updateUserInDB = (fullname, username, location, bio) => {
+  let userId = auth.currentUser.uid;
+  console.log("test",fullname, auth.currentUser.uid);
+  let updates = {};
+
+  updates[`/users/${auth.currentUser.uid}/user/fullname`] = fullname;
+  updates[`/users/${auth.currentUser.uid}/user/username`] = username;
+  updates[`/users/${auth.currentUser.uid}/user/location`] = location;
+  updates[`/users/${auth.currentUser.uid}/user/bio`] = bio;
+
+  db.ref().update(updates);
+
+}
 
 export const addNewUserToDB = (user) => {
   let newUserId = auth.currentUser.uid;

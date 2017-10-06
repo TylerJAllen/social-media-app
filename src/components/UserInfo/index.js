@@ -9,7 +9,7 @@ const UserInfo = ({ profileKey, profileDetails, user, userPosts }) => {
     if(user.userId === profileKey){
       return (
         <div className="user-actions">
-          <Link to={`/user/${user.userId}/edit`}><button className="userEditButton">Edit profile</button></Link>
+          <Link to={`/user/${user.userId}/edit-profile`}><button className="userEditButton">Edit profile</button></Link>
         </div>
       );
     } else {

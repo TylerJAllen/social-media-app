@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles.css';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, Link } from 'react-router-dom';
 import PostList from '../PostList';
 import { db, auth, isAuthenticated } from "../../firebase.js";
 import { getUserByKey } from "../../models/firebaseActions.js";
 import UserInfo from "../UserInfo";
 import UserContent from "../UserContent";
+import EditProfile from "../EditProfile";
 
 class UserProfile extends React.Component {
   constructor(){
@@ -62,16 +63,13 @@ class UserProfile extends React.Component {
     console.log("state.user", this.state.user);
     return (
       <div className="user-profile-container">
-
-        <UserInfo 
+        <UserInfo
           profileKey={this.state.profileKey}
           profileDetails={this.state.profileDetails}
           user={this.state.user}
           userPosts={this.state.userPosts} />
-
         <UserContent
           user={this.state.user} />
-
       </div>
     );
   }
