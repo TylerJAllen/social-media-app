@@ -1,0 +1,12 @@
+.userAvatarContainer {
+  bottom: 0px;
+  left: 10px;
+  position: absolute;
+  transition: bottom .3s;
+  z-index: 3;
+}
+
+.user-stats {
+  display: flex;
+  justify-content: space-around;
+}

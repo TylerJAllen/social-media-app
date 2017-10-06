@@ -11,6 +11,7 @@ import NewPostControl from "./components/NewPostControl";
 import LogInPage from "./components/LogInPage";
 import SignUpPage from "./components/SignUpPage";
 import UserProfile from "./components/UserProfile";
+import EditProfile from "./components/EditProfile";
 
 
 class App extends React.Component {
@@ -56,6 +57,9 @@ class App extends React.Component {
    this.setState({masterPostList: newMasterPostList});
   }
 
+  handleEditUpdate = (input) => {
+    this.setState({ user : input });
+  }
 
   render = () => {
     console.log("state.user: ", this.state.user);
@@ -83,8 +87,10 @@ class App extends React.Component {
               <Route exact path='/login' component={LogInPage} />
               <Route exact path='/signup' component={SignUpPage} />
 
-              <MatchWhenAuthorized path="/user/:user" component={UserProfile} />
+              <MatchWhenAuthorized exact path="/user/:user" component={UserProfile} />
 
+              <MatchWhenAuthorized exact path="/user/:user/edit-profile"
+              component={EditProfile} />
             </Switch>
           </div>
           <div className="App-footer">
