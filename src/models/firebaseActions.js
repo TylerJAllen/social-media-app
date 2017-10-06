@@ -24,3 +24,12 @@ export const addNewUserToDB = (user) => {
 
   db.ref().update(updates);
 }
+
+
+// export const getUserByKey = () => {
+//   let userId = auth.currentUser.uid;
+//
+//   db.ref(`/users/${userId}`).once('value').then( snapshot => {
+//     var user = snapshot.val();
+//   });
+// }

@@ -32,6 +32,21 @@
   font-weight: bold;
 }
 
+.userAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userAvatarImage {
+  border-radius: 50%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
 @media screen and (min-width: 1024px) {
   .show-nav-links {
     display: block;

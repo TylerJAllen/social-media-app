@@ -8,7 +8,6 @@ class Header extends React.Component {
   constructor(){
     super();
     this.state = {
-      user: null,
       userId: null
     }
   }
@@ -16,16 +15,27 @@ class Header extends React.Component {
   componentDidMount() {
     this.removeListener = auth.onAuthStateChanged((user) => {
       if (user) {
-        this.setState({userId: user.uid, user});
-        console.log(user.uid);
+        this.setState({ userId: user.uid });
       } else {
-        this.setState({userId: null, user: null});
+        this.setState({ userId: null });
       }
     });
   }
 
   componentWillUnmount() {
     this.removeListener();
+  }
+
+  showUserAvatar = () => {
+    if(isAuthenticated()){
+      return (
+        <Link to={`/user/${this.state.userId}`}>
+          <div className="userAvatar">
+            <img className='userAvatarImage' src='http://lorempixel.com/200/200/people' alt='avatar'/>
+          </div>
+        </Link>
+      );
+    }
   }
 
   showUserButtons = () => {
@@ -35,17 +45,6 @@ class Header extends React.Component {
           <button onClick={()=> auth.signOut()}>Log out</button>
           <button onClick={()=> this.props.showFormModal()}>+</button>
         </div>
-      );
-    }
-  }
-
-  showUserAvatar = () => {
-    if(isAuthenticated()){
-      return (
-        <div className="userAvatar">
-        
-        </div>
-
       );
     }
   }

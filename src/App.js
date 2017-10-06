@@ -10,6 +10,7 @@ import PostList from "./components/PostList";
 import NewPostControl from "./components/NewPostControl";
 import LogInPage from "./components/LogInPage";
 import SignUpPage from "./components/SignUpPage";
+import UserProfile from "./components/UserProfile";
 
 
 class App extends React.Component {
@@ -82,7 +83,7 @@ class App extends React.Component {
               <Route exact path='/login' component={LogInPage} />
               <Route exact path='/signup' component={SignUpPage} />
 
-
+              <MatchWhenAuthorized path="/user/:user" component={UserProfile} />
 
             </Switch>
           </div>
