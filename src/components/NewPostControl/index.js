@@ -1,12 +1,9 @@
 import React from 'react';
 import NewPostForm from '../../components/NewPostForm';
 import PropTypes from 'prop-types';
-import { Button, Modal }  from 'react-bootstrap';
+import { Modal }  from 'react-bootstrap';
 
 class NewPostControl extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
@@ -19,10 +16,7 @@ class NewPostControl extends React.Component {
             <Modal.Title>Add Post</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <NewPostForm
-              onNewPostCreation = {this.props.onNewPostCreation}
-              hideFormAfterSubmission = {this.props.hideFormModal}
-            />
+            <NewPostForm hideFormAfterSubmission={this.props.hideFormModal} />
           </Modal.Body>
         </Modal>
       </div>
@@ -31,7 +25,7 @@ class NewPostControl extends React.Component {
 }
 
 NewPostControl.propTypes = {
-  onNewPostCreation: PropTypes.func
+  hideFormModal: PropTypes.func
 };
 
 export default NewPostControl;

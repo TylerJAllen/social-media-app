@@ -1,101 +1,90 @@
-import React from 'react';
-import './App.css';
-import {Route, BrowserRouter, Switch} from 'react-router-dom';
-import Header from './components/Header';
-import NavigationLinks from './components/NavigationLinks';
-import PostList from './components/PostList';
-import NewPostControl from './components/NewPostControl';
-import UserProfile from './components/UserProfile/index.js';
-import PrivateMessage from './components/PrivateMessage';
-import SignUpLogIn from './components/SignUpLogIn';
+import React from "react";
+import "./App.css";
+import {Route, BrowserRouter, Switch } from "react-router-dom";
+import { auth, storageKey } from "./firebase.js";
+import { MatchWhenAuthorized } from "./models/routes.js";
+
+import Header from "./components/Header";
+import NavigationLinks from "./components/NavigationLinks";
+import PostList from "./components/PostList";
+import NewPostControl from "./components/NewPostControl";
+import LogInPage from "./components/LogInPage";
+import SignUpPage from "./components/SignUpPage";
+import UserProfile from "./components/UserProfile";
+
 
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
       formModalIsShowing: false,
-      masterPostList: [
-      {
-        name: "frank Apple",
-        username: "FRANKtheTANK",
-        text: "That catch was UNREAL!!!"
-      },
-      {
-        name: "Susie Reign",
-        username: "feeltheReign",
-        text: "Adams just keeps playing better and better. Would be shocked if he isn't voted Defensive Rookie of the Year. SHOCKED I TELL YOU!"
-      },
-      {
-        name: "Fake Name",
-        username: "fakeeee",
-        text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
-      },
-      {
-        name: "frank Apple",
-        username: "FRANKtheTANK",
-        text: "That catch was UNREAL!!!"
-      },
-      {
-        name: "Susie Reign",
-        username: "feeltheReign",
-        text: "Adams just keeps playing better and better. Would be shocked if he isn't voted Defensive Rookie of the Year. SHOCKED I TELL YOU!"
-      },
-      {
-        name: "Fake Name",
-        username: "fakeeee",
-        text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
-      },
-      {
-        name: "frank Apple",
-        username: "FRANKtheTANK",
-        text: "That catch was UNREAL!!!"
-      },
-      {
-        name: "Susie Reign",
-        username: "feeltheReign",
-        text: "Adams just keeps playing better and better. Would be shocked if he isn't voted Defensive Rookie of the Year. SHOCKED I TELL YOU!"
-      },
-      {
-        name: "Fake Name",
-        username: "fakeeee",
-        text: "iuhann u uens fasdjkfn iun euabes kba kba sbd kawebfeiubewiurakasjf b balesdbaweb besdf esdbf d db."
-      }
-    ]};
+      user: null,
+      userId: null
+    }
   }
 
+  componentDidMount = () => {
+    this.removeListener = auth.onAuthStateChanged((user) => {
+      if (user) {
+        window.localStorage.setItem(storageKey, user.uid);
+        this.setState({ userId: user.uid, user });
+      } else {
+        window.localStorage.removeItem(storageKey);
+        this.setState({ userId: null, user: null });
+      }
+    });
+  }
+
+  componentWillUnmount = () => {
+    this.removeListener();
+  }
+
+  //show modal for new post
   showFormModal = () => {
     this.setState({ formModalIsShowing: true });
   }
 
+  //hide modal for new post
   hideFormModal = () => {
     this.setState({ formModalIsShowing: false });
   }
 
+  //remove after firebase posts retrieval is established
   addNewPostToList = (newPost) => {
    let newMasterPostList = this.state.masterPostList.slice();
    newMasterPostList.unshift(newPost);
    this.setState({masterPostList: newMasterPostList});
   }
 
-  render() {
+
+  render = () => {
+    console.log("state.user: ", this.state.user);
+    console.log("state.userId: ", this.state.userId);
     return (
       <BrowserRouter>
         <div className="App">
-          <div className="App-header">
-            <Header showFormModal = {this.showFormModal} />
-          </div>
+        <Header showFormModal={this.showFormModal} />
           <div className="App-main">
             <NewPostControl
-              formModalIsShowing = {this.state.formModalIsShowing}
-              onNewPostCreation = {this.addNewPostToList}
-              hideFormModal = {this.hideFormModal} />
+            formModalIsShowing={this.state.formModalIsShowing}
+            hideFormModal={this.hideFormModal} />
             <Switch>
-              <Route exact path = '/' component = {SignUpLogIn} />
-              <Route exact path = '/postlist'
-                render = {props => <PostList {...props} masterPostList = {this.state.masterPostList} /> } />
-              <Route path='/user-profile'
-                render = {props => <UserProfile {...props} masterPostList = {this.state.masterPostList} /> } />
-              <Route path='/messages' component = {PrivateMessage} />
+
+              {/*<Route exact path="/" render={() => (
+                loggedIn ? (
+                  <Redirect to="/dashboard"/>
+                ) : (
+                  <PublicHomePage/>
+                )
+              )}/>*/}
+
+              <MatchWhenAuthorized exact path="/" component={PostList} />
+
+              <Route exact path='/login' component={LogInPage} />
+              <Route exact path='/signup' component={SignUpPage} />
+
+              <MatchWhenAuthorized path="/user/:user" component={UserProfile} />
+
             </Switch>
           </div>
           <div className="App-footer">

@@ -1,31 +1,34 @@
 import React from 'react';
 import Post from '../../models/Post.js';
 import PropTypes from 'prop-types';
+import { auth } from '../../firebase.js';
+import { getUserId, addNewPostToDB } from '../../models/firebaseActions.js';
+
 
 class NewPostForm extends React.Component{
 
   handleNewPostFormSubmission = (event) => {
     event.preventDefault();
-    const { _name, _username, _text } = this.refs;
-    var newPost = new Post(_name.value, _username.value, _text.value);
-    this.props.onNewPostCreation(newPost);
+    const { _text } = this.refs;
+
+    //static user inputs until get currentUser info updated
+    var newPost = new Post(
+      _text.value,
+      auth.currentUser.uid,
+      "tyler Allen",
+      "TyHamm",
+      "Portland, OR",
+      "Junior Web Developer interning at AKQA!"
+    );
+
+    addNewPostToDB(newPost);
     this.props.hideFormAfterSubmission();
-    console.log("new post: ", newPost);
   }
+
   render(){
     return (
       <div>
         <form onSubmit={this.handleNewPostFormSubmission}>
-          <div className="input-wrapper"><input
-            ref="_name"
-            type="text"
-            id="name"
-            placeholder="Name" /></div>
-          <div className="input-wrapper"><input
-            ref="_username"
-            type="text"
-            id="username"
-            placeholder="Username" /></div>
           <div className="input-wrapper"><textarea
             ref="_text"
             type="text"
@@ -39,7 +42,6 @@ class NewPostForm extends React.Component{
 }
 
 NewPostForm.propTypes = {
-  onNewPostCreation: PropTypes.func,
   hideFormAfterSubmission: PropTypes.func
 };
 

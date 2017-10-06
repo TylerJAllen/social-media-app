@@ -1,22 +1,16 @@
 import Moment from "moment";
 
 class User {
-  constructor(fullname, username, password) {
+  constructor(fullname, username, location, bio) {
+    this.avatar = false;
+    this.bio = bio;
     this.fullname = fullname;
+    this.hero = false;
+    this.location = location;
+    this.team = false;
+    this.userId = 0;
     this.username = username;
-    this.password = password;
-    this.location;
-    this.description;
-    this.team;
-    this.avatar;
-    this.hero;
-    this.posts = [];
-    this.likes = [];
-    this.followers = [];
-    this.following = [];
-    this.messages = [];
-
-    this.accountCreated = new Moment();
+    this.accountCreated = (new Date());
   }
 }
 

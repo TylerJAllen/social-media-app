@@ -11,7 +11,7 @@ function Post(props){
         <div className="post-header">
           <Link className='account-group' to='/user-profile'>
             <img className='avatar' src='http://lorempixel.com/73/73/people' alt='avatar'/>
-            <span className='fullname'>{props.name}</span>
+            <span className='fullname'>{props.fullname}</span>
             <span>&nbsp;</span>
             <span className="username">@{props.username}</span><span>&nbsp;</span>
             <span className="time">&nbsp;
