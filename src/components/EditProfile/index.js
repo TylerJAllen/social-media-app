@@ -29,6 +29,14 @@ class EditProfile extends React.Component {
     this.setState({ userId });
   }
 
+  deleteProfile = () => {
+    var user = auth.currentUser;
+
+    user.delete().then(function() {
+    }).catch(function(error) {
+    });
+  }
+
   render() {
     return (
       <div>
@@ -76,6 +84,10 @@ class EditProfile extends React.Component {
         <br/><br/>
         <Link to={`/user/${this.state.userId}`}>
         <button>Return to your profile</button></Link>
+        <br/><br/>
+        <br/><br/>
+        <br/><br/>
+        <button onClick={this.deleteProfile}>Delete profile</button>
       </div>
     );
   }
